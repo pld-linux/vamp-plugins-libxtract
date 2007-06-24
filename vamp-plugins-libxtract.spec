@@ -1,17 +1,19 @@
-%define	vampplugindir	%{_libdir}/vamp
-%define srcname	vamp-libxtract-plugins
+%define		vampplugindir	%{_libdir}/vamp
+%define		srcname		vamp-libxtract-plugins
 
-Summary:	vamp plugins using libxtract
+Summary:	Vamp plugins using libxtract
+Summary(pl.UTF-8):	Wtyczki Vampa wykorzystujące libxtract
 Name:		vamp-plugins-libxtract
 Version:	0.4.2
 Release:	1
-License:	GPL v2
+License:	GPL v2+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/vamp/%{srcname}-%{version}.tar.gz
 # Source0-md5:	8e33aef855ae4d4635d32c70c8734daf
 Patch0:		%{name}-link.patch
 URL:		http://www.vamp-plugins.org/
 BuildRequires:	libstdc++-devel
+BuildRequires:	libxtract-devel
 BuildRequires:	vamp-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -20,14 +22,22 @@ A set of Vamp plugins (http://www.sonicvisualiser.org/vamp.html) for
 low-level audio feature extraction using Jamie Bullock's libxtract
 (http://sourceforge.net/projects/libxtract/).
 
+%description -l pl.UTF-8
+Zestaw wtyczek Vampa (http://www.sonicvisualiser.org/vamp.html) do
+wydobywania niskopoziomowych cech dźwięku pzry użyciu libxtract Jamie
+Bullocka (http://sourceforge.net/projects/libxtract/).
+
 %prep
 %setup -q -n %{srcname}-%{version}
 %patch0 -p1
 
 %build
 %{__make} \
-	OPTFLAGS="%{rpmcxxflags}" \
-	LDFLAGS="%{rpmldflags}"
+	CXX="%{__cxx}" \
+	CXXFLAGS="%{rpmcxxflags} -DNDEBUG -ffast-math -Wall -I/usr/include/vamp-sdk -I." \
+	LDFLAGS="%{rpmldflags}" \
+	PLUGIN_LIBS="-lvamp-sdk -lxtract" \
+	PLUGIN_LDFLAGS="-shared -Wl,-Bsymbolic %{rpmldflags}"
 
 %install
 rm -rf $RPM_BUILD_ROOT
