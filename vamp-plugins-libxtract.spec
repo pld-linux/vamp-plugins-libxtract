@@ -10,8 +10,7 @@ License:	GPL v2+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/vamp/%{srcname}-%{version}.tar.gz
 # Source0-md5:	62015fe0d8822f79bcff579c17202810
-Patch0:		%{name}-link.patch
-Patch1:		gcc44.patch
+Patch0:		gcc44.patch
 URL:		http://www.vamp-plugins.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxtract-devel
@@ -31,7 +30,6 @@ Bullocka (http://sourceforge.net/projects/libxtract/).
 %prep
 %setup -q -n %{srcname}-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__make} \
