@@ -4,13 +4,14 @@
 Summary:	Vamp plugins using libxtract
 Summary(pl.UTF-8):	Wtyczki Vampa wykorzystujące libxtract
 Name:		vamp-plugins-libxtract
-Version:	0.4.2
+Version:	0.4.5.20081202
 Release:	1
 License:	GPL v2+
 Group:		Libraries
 Source0:	http://dl.sourceforge.net/vamp/%{srcname}-%{version}.tar.gz
-# Source0-md5:	8e33aef855ae4d4635d32c70c8734daf
+# Source0-md5:	62015fe0d8822f79bcff579c17202810
 Patch0:		%{name}-link.patch
+Patch1:		gcc44.patch
 URL:		http://www.vamp-plugins.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	libxtract-devel
@@ -30,6 +31,7 @@ Bullocka (http://sourceforge.net/projects/libxtract/).
 %prep
 %setup -q -n %{srcname}-%{version}
 %patch0 -p1
+%patch1 -p1
 
 %build
 %{__make} \
