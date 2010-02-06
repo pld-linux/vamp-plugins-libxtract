@@ -1,0 +1,11 @@
+--- vamp-libxtract-plugins-0.4.5.20081202/plugins/XTractPlugin.cpp.orig	2010-02-06 23:10:41.757287160 +0100
++++ vamp-libxtract-plugins-0.4.5.20081202/plugins/XTractPlugin.cpp	2010-02-06 23:11:02.310619683 +0100
+@@ -18,7 +18,7 @@
+ 
+ #include <cassert>
+ #include <math.h>
+-
++#include <cstdio>
+ 
+ using std::cerr;
+ using std::endl;
