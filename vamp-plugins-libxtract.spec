@@ -29,7 +29,7 @@ Bullocka (http://sourceforge.net/projects/libxtract/).
 
 %prep
 %setup -q -n %{srcname}-%{version}
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__make} \
